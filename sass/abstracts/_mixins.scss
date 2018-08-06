@@ -1,0 +1,72 @@
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin btn-hover {
+    box-shadow: 0 1rem 2rem rgba($color-black, .15);
+    transform: translateY(-3px);
+}
+
+@mixin btn-active {
+    box-shadow: 0 .5rem 1rem rgba($color-black, .15);
+    transform: translateY(0);
+}
+
+@mixin absCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+// MEDIA QUERY MANAGER
+
+
+/*
+0-600px : Phone
+
+600-900px : Tablet Portrait
+
+900-1200px : Tablet Landscape
+
+[ 1200-1800px : Normal Desktop - original code applies ]
+
+1800px+ : Large Desktop
+*/
+
+/* BREAKPOINT ARGUMENT CHOICES
+
+phone
+tab-port
+tab-land
+big-desktop
+
+ORDER FOR MEDIA QUERIES: BASE + TYPOGRAPHY > GENERAL LAYOUT + GRID > PAGE LAYOUT > COMPONENTS
+
+*/
+
+@mixin respond ($breakpoint) {
+    @if $breakpoint == phone {
+        @media only screen and (max-width: 37.5em) { @content }; //600px
+    } 
+    @if $breakpoint == tab-port {
+        @media only screen and (max-width: 56.25em) { @content }; //900px
+    } 
+    @if $breakpoint == tab-land {
+        @media only screen and (max-width: 75em) { @content }; //1200px
+    } 
+    @if $breakpoint == big-desktop {
+        @media only screen and (min-width: 112.5em) { @content }; //1800px
+    } 
+}
+
+@mixin respondImg {
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+    (min-width: 125em) { @content };
+}

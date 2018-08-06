@@ -1,0 +1,38 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%; //defines that 1rem = 10px (16/62.5%=10)
+
+    @include respond(tab-land) { // WIDTH LESS THAN 1200?
+        font-size: 70%; //1rem = 11.2px; 11.2/16=70%
+    }
+
+    @include respond(tab-port) { // WIDTH LESS THAN 900?
+        font-size: 50%; //1rem = 8px; 8/16=50%
+    }
+
+    @include respond(big-desktop) {
+        font-size: 80%;   
+    }
+
+}
+
+body {
+    box-sizing: border-box;
+    padding: 3rem;
+
+    @include respond(tab-port) { // WIDTH LESS THAN 900?
+        padding: 0;
+    }
+}
+
+::selection {
+    background-color: $color-primary;
+    color: $color-white;
+}
